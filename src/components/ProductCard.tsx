@@ -1,11 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
-import { type Category, type Product, formatPrice, isDeal, savingsPercent, tiktokLink } from "@/lib/products";
+import { type Category, type Product, tiktokLink } from "@/lib/products";
+import { ColorDots, ConditionChips, Price } from "./ProductMeta";
 import { TikTokIcon } from "./TikTokButton";
 
-export const CATEGORY_STYLE: Record<Category, { label: string; tile: string; icon: React.ReactNode }> = {
+export const CATEGORY_STYLE: Record<
+  Category,
+  { label: string; section: string; tile: string; icon: React.ReactNode }
+> = {
+  iphone: {
+    label: "iPhone",
+    section: "devices",
+    tile: "from-white/20 to-slate-500/5",
+    icon: (
+      // Phone
+      <path d="M7 2h10v20H7V2Zm2 2v14h6V4H9Zm2 15h2v1h-2v-1Z" fillRule="evenodd" />
+    ),
+  },
+  ipad: {
+    label: "iPad",
+    section: "devices",
+    tile: "from-cyan-400/20 to-cyan-700/5",
+    icon: (
+      // Tablet
+      <path d="M4 3h16v18H4V3Zm2 2v13h12V5H6Zm5 14h2v1h-2v-1Z" fillRule="evenodd" />
+    ),
+  },
   gaming: {
     label: "Gaming",
+    section: "gaming",
     tile: "from-pitch/25 to-pitch-deep/5",
     icon: (
       // Gamepad
@@ -14,6 +37,7 @@ export const CATEGORY_STYLE: Record<Category, { label: string; tile: string; ico
   },
   tech: {
     label: "Tech",
+    section: "tech",
     tile: "from-seal/25 to-seal-deep/5",
     icon: (
       // Laptop
@@ -22,6 +46,7 @@ export const CATEGORY_STYLE: Record<Category, { label: string; tile: string; ico
   },
   everyday: {
     label: "Everyday",
+    section: "deals",
     tile: "from-sky-400/25 to-sky-600/5",
     icon: (
       // Box
@@ -44,7 +69,6 @@ export function ProductPlaceholder({ category, className = "" }: { category: Cat
 
 export function ProductCard({ product }: { product: Product }) {
   const cat = CATEGORY_STYLE[product.category];
-  const deal = isDeal(product);
   const [main, alt] = product.images ?? [];
   const href = `/products/${product.slug}`;
 
@@ -59,7 +83,7 @@ export function ProductCard({ product }: { product: Product }) {
               fill
               placeholder="blur"
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-              className={`object-cover transition-all duration-300 group-hover:scale-105 ${alt ? "group-hover:opacity-0" : ""}`}
+              className={`object-contain transition-all duration-300 group-hover:scale-105 ${alt ? "group-hover:opacity-0" : ""}`}
             />
             {alt && (
               <Image
@@ -67,7 +91,7 @@ export function ProductCard({ product }: { product: Product }) {
                 alt=""
                 fill
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                className="object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
             )}
           </>
@@ -95,16 +119,12 @@ export function ProductCard({ product }: { product: Product }) {
             {product.name}
           </Link>
         </h3>
+        <ConditionChips conditions={product.conditions} />
         <p className="text-sm text-mist/80">{product.blurb}</p>
+        <ColorDots product={product} />
 
-        <div className="mt-auto flex items-baseline gap-2 pt-2">
-          <span className="font-pixel text-xl font-bold text-pitch">{formatPrice(product.price)}</span>
-          {deal && (
-            <>
-              <span className="text-sm text-mist/60 line-through">{formatPrice(product.compareAt!)}</span>
-              <span className="text-xs font-bold text-seal">-{savingsPercent(product)}%</span>
-            </>
-          )}
+        <div className="mt-auto pt-2">
+          <Price product={product} />
         </div>
 
         <a

@@ -9,16 +9,34 @@ import t7Features from "@/assets/products/gamesir-t7/05-features.jpg";
 import t7Compat from "@/assets/products/gamesir-t7/06-compatibility.webp";
 import t7Box from "@/assets/products/gamesir-t7/07-in-the-box.jpg";
 
-export type Category = "gaming" | "tech" | "everyday";
+import g305Angle from "@/assets/products/logitech-g305/01-black-angle.jpg";
+import g305Banner from "@/assets/products/logitech-g305/02-banner.webp";
+import g305Features from "@/assets/products/logitech-g305/03-key-features.webp";
+import g305BlackDiagram from "@/assets/products/logitech-g305/04-black-diagram.jpg";
+import g305WhiteDiagram from "@/assets/products/logitech-g305/05-white-diagram.jpg";
+import g305Underside from "@/assets/products/logitech-g305/06-underside.webp";
+import g305Sensor from "@/assets/products/logitech-g305/07-hero-sensor.jpg";
+
+export type Category = "gaming" | "tech" | "iphone" | "ipad" | "everyday";
+
+export type Condition = "New" | "Used" | "Refurbished";
 
 export type ProductImage = { src: StaticImageData; alt: string };
+
+export type ColorOption = { name: string; hex: string; inStock: boolean };
 
 export type Product = {
   slug: string;
   name: string;
   blurb: string;
   category: Category;
-  price: number;
+  /** Omit to show "See price on TikTok" (e.g. devices priced per model/condition). */
+  price?: number;
+  /** Conditions this item is sold in. Omit for new-only items. */
+  conditions?: Condition[];
+  /** Specific models covered by this listing, e.g. "iPhone 14 Pro". */
+  models?: string[];
+  colors?: ColorOption[];
   /** Original price, shown struck through when the item is on deal. */
   compareAt?: number;
   badge?: string;
@@ -43,6 +61,12 @@ export const PRODUCTS: Product[] = [
     compareAt: 39.99,
     badge: "Top Save",
     featured: true,
+    colors: [
+      { name: "Black", hex: "#1a1a1a", inStock: true },
+      { name: "White", hex: "#f2f2f2", inStock: true },
+      { name: "Translucent Red", hex: "#d62a2a", inStock: false },
+      { name: "Translucent Blue", hex: "#2b5fd9", inStock: false },
+    ],
     images: [
       { src: t7BlackFront, alt: "GameSir T7 wired controller in black with blue-lit thumbsticks, front view" },
       { src: t7WhiteFront, alt: "GameSir T7 in white with orange D-pad and A/B buttons, front view" },
@@ -57,8 +81,71 @@ export const PRODUCTS: Product[] = [
       "Designed for Xbox Series X|S and Xbox One, works on Windows 10/11 and Steam",
       "3.5mm headphone jack and four rumble motors",
       "Detachable 3m USB-C cable included",
-      "Available in black, white, translucent red and translucent blue",
     ],
+  },
+  // --- iPhones: used & refurbished only ---
+  {
+    slug: "iphone-13",
+    name: "iPhone 13 Series",
+    blurb: "A15 Bionic, dual cameras, all-day battery. Tested and ready to go.",
+    category: "iphone",
+    conditions: ["Refurbished", "Used"],
+    models: ["iPhone 13 mini", "iPhone 13", "iPhone 13 Pro", "iPhone 13 Pro Max"],
+  },
+  {
+    slug: "iphone-14",
+    name: "iPhone 14 Series",
+    blurb: "Crash Detection, Emergency SOS via satellite and a brighter camera.",
+    category: "iphone",
+    conditions: ["Refurbished", "Used"],
+    models: ["iPhone 14", "iPhone 14 Plus", "iPhone 14 Pro", "iPhone 14 Pro Max"],
+  },
+  {
+    slug: "iphone-15",
+    name: "iPhone 15 Series",
+    blurb: "USB-C, Dynamic Island on every model and a 48MP main camera.",
+    category: "iphone",
+    conditions: ["Refurbished", "Used"],
+    models: ["iPhone 15", "iPhone 15 Plus", "iPhone 15 Pro", "iPhone 15 Pro Max"],
+  },
+  {
+    slug: "iphone-16",
+    name: "iPhone 16 Series",
+    blurb: "Built for Apple Intelligence, with Camera Control and the Action button.",
+    category: "iphone",
+    conditions: ["Refurbished", "Used"],
+    models: ["iPhone 16e", "iPhone 16", "iPhone 16 Plus", "iPhone 16 Pro", "iPhone 16 Pro Max"],
+  },
+  {
+    slug: "iphone-17",
+    name: "iPhone 17 Series",
+    blurb: "The latest generation for less. Limited stock.",
+    category: "iphone",
+    conditions: ["Refurbished", "Used"],
+    models: ["iPhone 17", "iPhone Air", "iPhone 17 Pro", "iPhone 17 Pro Max"],
+  },
+  // --- iPads: new & used ---
+  {
+    slug: "ipad-a16",
+    name: "iPad (A16)",
+    blurb: "The everyday iPad: 11-inch display, A16 chip, USB-C and Touch ID.",
+    category: "ipad",
+    conditions: ["New", "Used"],
+  },
+  {
+    slug: "ipad-air",
+    name: "iPad Air",
+    blurb: "Thin, light and powerful. Works with Apple Pencil Pro and Magic Keyboard.",
+    category: "ipad",
+    conditions: ["New", "Used"],
+    models: ["iPad Air 11-inch", "iPad Air 13-inch"],
+  },
+  {
+    slug: "ipad-mini",
+    name: "iPad mini",
+    blurb: "Full iPad power in an 8.3-inch size that fits in one hand.",
+    category: "ipad",
+    conditions: ["New", "Used"],
   },
   {
     slug: "logitech-g305",
@@ -67,6 +154,23 @@ export const PRODUCTS: Product[] = [
     category: "gaming",
     price: 49.99,
     featured: true,
+    images: [
+      { src: g305Angle, alt: "Logitech G305 Lightspeed wireless gaming mouse in black, angled view" },
+      { src: g305Banner, alt: "Logitech G305 in black with its blue LED glowing, in front of rows of G305 mice" },
+      { src: g305Features, alt: "G305 key features: Lightspeed wireless 1ms, HERO 12,000 DPI sensor, 250 hours battery, 99 grams, 6 programmable buttons" },
+      { src: g305BlackDiagram, alt: "Black G305 diagram: DPI button, LED indicator, HERO 12K sensor, customizable buttons, receiver storage, on/off switch" },
+      { src: g305WhiteDiagram, alt: "White G305 diagram showing the same buttons, sensor and on/off switch" },
+      { src: g305Underside, alt: "Underside of the black G305 showing the HERO sensor, glide feet and power switch" },
+      { src: g305Sensor, alt: "Close-up of the G305's glowing HERO sensor" },
+    ],
+    highlights: [
+      "LIGHTSPEED wireless with a 1ms report rate — no cable, no lag",
+      "HERO sensor: up to 12,000 DPI and 400 IPS",
+      "Up to 250 hours of play on one AA battery, with low-battery indicator",
+      "Just 99 grams for fast, easy movement",
+      "6 programmable buttons and storage for the USB receiver inside the mouse",
+      "Available in black and white",
+    ],
   },
   {
     slug: "macbook-air",
@@ -124,10 +228,11 @@ export const getProduct = (slug: string) => PRODUCTS.find((p) => p.slug === slug
 
 export const tiktokLink = (p: Product) => p.tiktokUrl ?? TIKTOK_SHOP_URL;
 
-export const isDeal = (p: Product) => p.compareAt !== undefined && p.compareAt > p.price;
+export const isDeal = (p: Product) =>
+  p.price !== undefined && p.compareAt !== undefined && p.compareAt > p.price;
 
 export const savingsPercent = (p: Product) =>
-  p.compareAt ? Math.round((1 - p.price / p.compareAt) * 100) : 0;
+  p.price !== undefined && p.compareAt ? Math.round((1 - p.price / p.compareAt) * 100) : 0;
 
 export const formatPrice = (n: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(n);

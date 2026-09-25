@@ -9,6 +9,8 @@ import heroImage from "@/assets/seal-goalkeeper.png";
 
 const featured = PRODUCTS.filter((p) => p.featured);
 const deals = PRODUCTS.filter(isDeal);
+const iphones = PRODUCTS.filter((p) => p.category === "iphone");
+const ipads = PRODUCTS.filter((p) => p.category === "ipad");
 const gaming = PRODUCTS.filter((p) => p.category === "gaming");
 const tech = PRODUCTS.filter((p) => p.category === "tech");
 
@@ -110,6 +112,26 @@ export default function Home() {
               </SectionHeading>
               <ProductGrid items={deals} />
             </div>
+          </section>
+
+          <section id="devices" className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
+            <SectionHeading kicker="Refurbished · Used · New" title="iPhone & iPad">
+              <p className="max-w-xs text-sm text-mist">
+                Every device is checked before listing. Pick model, storage and condition on TikTok Shop.
+              </p>
+            </SectionHeading>
+
+            <h3 className="mb-4 flex flex-wrap items-baseline gap-x-3 font-pixel text-lg font-bold uppercase">
+              iPhone 13 & up
+              <span className="font-sans text-sm font-normal normal-case text-mist">Used & refurbished only</span>
+            </h3>
+            <ProductGrid items={iphones} />
+
+            <h3 className="mb-4 mt-12 flex flex-wrap items-baseline gap-x-3 font-pixel text-lg font-bold uppercase">
+              iPad
+              <span className="font-sans text-sm font-normal normal-case text-mist">New & used</span>
+            </h3>
+            <ProductGrid items={ipads} />
           </section>
 
           <section id="gaming" className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">

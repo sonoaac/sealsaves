@@ -31,7 +31,7 @@ export function TikTokButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex min-h-11 items-center justify-center gap-2 px-5 py-2.5 font-pixel text-sm font-bold uppercase tracking-wide transition-colors pixel-shadow ${styles} ${className}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap px-5 py-2.5 font-pixel text-sm font-bold uppercase tracking-wide transition-colors pixel-shadow ${styles} ${className}`}
     >
       <TikTokIcon />
       {label}

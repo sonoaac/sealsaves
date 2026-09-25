@@ -13,11 +13,11 @@ export function Header() {
       <div className="mx-auto flex h-18 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Logo />
 
-        <nav aria-label="Main" className="hidden md:block">
-          <ul className="flex items-center gap-7">
+        <nav aria-label="Main" className="hidden lg:block">
+          <ul className="flex items-center gap-6 xl:gap-7">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="text-sm font-semibold text-mist transition-colors hover:text-pitch">
+                <a href={l.href} className="whitespace-nowrap text-sm font-semibold text-mist transition-colors hover:text-pitch">
                   {l.label}
                 </a>
               </li>
@@ -25,13 +25,13 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <TikTokButton label="TikTok Shop" />
         </div>
 
         <button
           type="button"
-          className="grid size-11 place-items-center border-2 border-white/20 md:hidden"
+          className="grid size-11 place-items-center border-2 border-white/20 lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -45,7 +45,7 @@ export function Header() {
         </button>
       </div>
 
-      <nav id="mobile-nav" aria-label="Mobile" hidden={!open} className="border-t border-white/10 bg-night md:hidden">
+      <nav id="mobile-nav" aria-label="Mobile" hidden={!open} className="border-t border-white/10 bg-night lg:hidden">
         <ul className="flex flex-col px-4 py-3">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
