@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-night: #070d1f;
+  --color-night-2: #0e1733;
+  --color-night-3: #17244a;
+  --color-pitch: #5fe32f;
+  --color-pitch-deep: #2f9e17;
+  --color-seal: #ff3d9a;
+  --color-seal-deep: #d81b7a;
+  --color-mist: #c9d3ee;
+
+  --font-sans: var(--font-body);
+  --font-pixel: var(--font-silkscreen);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-night);
+  color: #fff;
+}
+
+/* Chunky voxel-style drop shadow for buttons and cards */
+.pixel-shadow {
+  box-shadow: 4px 4px 0 0 rgb(0 0 0 / 0.55);
+}
+.pixel-shadow:active {
+  box-shadow: 1px 1px 0 0 rgb(0 0 0 / 0.55);
+  transform: translate(3px, 3px);
+}
+
+/* Faint pitch grid, echoing the blocky turf */
+.pitch-grid {
+  background-image:
+    linear-gradient(rgb(95 227 47 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(95 227 47 / 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
