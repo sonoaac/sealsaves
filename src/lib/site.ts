@@ -6,9 +6,9 @@ export const TIKTOK_SHOP_URL =
 export const CONTACT_EMAIL = "hello@sealsaves.com";
 
 export const NAV_LINKS = [
-  { label: "Home", href: "#top" },
-  { label: "Shop", href: "#featured" },
-  { label: "Deals", href: "#deals" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Shop", href: "/#featured" },
+  { label: "Deals", href: "/#deals" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
 ] as const;

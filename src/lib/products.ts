@@ -1,6 +1,17 @@
+import type { StaticImageData } from "next/image";
 import { TIKTOK_SHOP_URL } from "./site";
 
+import t7BlackFront from "@/assets/products/gamesir-t7/01-black-front.jpg";
+import t7WhiteFront from "@/assets/products/gamesir-t7/02-white-front.jpg";
+import t7WhiteAngle from "@/assets/products/gamesir-t7/03-white-angle.jpg";
+import t7Colors from "@/assets/products/gamesir-t7/04-colors.webp";
+import t7Features from "@/assets/products/gamesir-t7/05-features.jpg";
+import t7Compat from "@/assets/products/gamesir-t7/06-compatibility.webp";
+import t7Box from "@/assets/products/gamesir-t7/07-in-the-box.jpg";
+
 export type Category = "gaming" | "tech" | "everyday";
+
+export type ProductImage = { src: StaticImageData; alt: string };
 
 export type Product = {
   slug: string;
@@ -14,6 +25,10 @@ export type Product = {
   featured?: boolean;
   /** Direct TikTok Shop product link. Falls back to the storefront. */
   tiktokUrl?: string;
+  /** First image is the main card photo; the rest appear in the gallery. */
+  images?: ProductImage[];
+  /** Bullet points shown on the product page. */
+  highlights?: string[];
 };
 
 // Sample catalog — replace prices and add per-product TikTok links.
@@ -28,6 +43,22 @@ export const PRODUCTS: Product[] = [
     compareAt: 39.99,
     badge: "Top Save",
     featured: true,
+    images: [
+      { src: t7BlackFront, alt: "GameSir T7 wired controller in black with blue-lit thumbsticks, front view" },
+      { src: t7WhiteFront, alt: "GameSir T7 in white with orange D-pad and A/B buttons, front view" },
+      { src: t7WhiteAngle, alt: "GameSir T7 in white, angled view showing the grip and triggers" },
+      { src: t7Colors, alt: "GameSir T7 in translucent red, translucent blue and white" },
+      { src: t7Features, alt: "GameSir T7 feature callouts: Hall effect sticks and triggers, headphone jack, rumble motors" },
+      { src: t7Compat, alt: "GameSir T7 held in hands, compatible with Xbox Series X|S, Xbox One, Steam and Windows" },
+      { src: t7Box, alt: "What's in the box: GameSir T7 controller, 3m USB-C cable, manual and Game Pass card" },
+    ],
+    highlights: [
+      "Hall effect sticks and triggers — no stick drift",
+      "Designed for Xbox Series X|S and Xbox One, works on Windows 10/11 and Steam",
+      "3.5mm headphone jack and four rumble motors",
+      "Detachable 3m USB-C cable included",
+      "Available in black, white, translucent red and translucent blue",
+    ],
   },
   {
     slug: "logitech-g305",
@@ -88,6 +119,8 @@ export const PRODUCTS: Product[] = [
     price: 12.99,
   },
 ];
+
+export const getProduct = (slug: string) => PRODUCTS.find((p) => p.slug === slug);
 
 export const tiktokLink = (p: Product) => p.tiktokUrl ?? TIKTOK_SHOP_URL;
 
