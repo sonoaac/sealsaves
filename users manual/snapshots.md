@@ -37,7 +37,9 @@ A copy of the project and every snapshot lives on GitHub:
 ```
 git add -A
 git commit -m "describe what changed"
-git push --follow-tags
+git tag v7-short-name      # optional: name this snapshot
+git push
+git push --tags
 ```
 
 **If the laptop is lost or replaced:** on the new computer, run
