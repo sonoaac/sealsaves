@@ -19,7 +19,7 @@ C:\Users\chuch\Downloads\sealsavesale\.git
 
 A copy of the project and every snapshot lives on GitHub:
 
-**https://github.com/sonoaac/sealsaves** (private, account **sonoaac**)
+**https://github.com/sonoaac/sealsaves** (account **sonoaac**; currently **public**, anyone can view it. To change: repository Settings → General → Danger Zone → Change visibility → Private)
 
 **Snapshots so far:**
 
@@ -30,6 +30,7 @@ A copy of the project and every snapshot lives on GitHub:
 | `v3-logo-devices` | + S² logo, Logitech photos, iPhones/iPads, colour stock |
 | `v4-color-picker` | + colour cubes that switch the title and photo |
 | `v5-users-manual` | + this users manual and the auto-updated chat log |
+| `v6-github-backup` | + this GitHub backup section |
 
 **Keeping GitHub up to date:** a new snapshot is saved on your computer first. Ask Claude to "save a snapshot and upload it", or run these in the project folder:
 
