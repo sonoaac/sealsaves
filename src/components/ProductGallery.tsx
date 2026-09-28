@@ -24,8 +24,18 @@ function Arrow({ dir, onClick }: { dir: "prev" | "next"; onClick: () => void }) 
   );
 }
 
-export function ProductGallery({ images, name }: { images: ProductImage[]; name: string }) {
-  const [index, setIndex] = useState(0);
+type GalleryProps = {
+  images: ProductImage[];
+  name: string;
+  /** Pass index + onIndexChange to control the gallery from outside (e.g. a color picker). */
+  index?: number;
+  onIndexChange?: (i: number) => void;
+};
+
+export function ProductGallery({ images, name, index: controlled, onIndexChange }: GalleryProps) {
+  const [own, setOwn] = useState(0);
+  const index = controlled ?? own;
+  const setIndex = onIndexChange ?? setOwn;
   const touchX = useRef<number | null>(null);
   const count = images.length;
   const go = (i: number) => setIndex((i + count) % count);
@@ -58,7 +68,7 @@ export function ProductGallery({ images, name }: { images: ProductImage[]; name:
           alt={current.alt}
           fill
           placeholder="blur"
-          loading={index === 0 ? "eager" : undefined}
+          loading="eager"
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-contain"
         />

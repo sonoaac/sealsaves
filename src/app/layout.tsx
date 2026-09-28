@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${body.variable} ${pixel.variable} h-full antialiased`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${body.variable} ${pixel.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );

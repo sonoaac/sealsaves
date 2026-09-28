@@ -42,21 +42,31 @@ export function Price({ product, size = "sm" }: { product: Product; size?: "sm" 
   );
 }
 
-/** Compact dots for cards; out-of-stock colors are dimmed with a slash. */
+/** A Minecraft-style color block. Out-of-stock colors are dimmed with a slash. */
+export function ColorCube({ hex, inStock = true, className = "size-5" }: { hex: string; inStock?: boolean; className?: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`voxel-cube relative block ${inStock ? "" : "opacity-40"} ${className}`}
+      style={{ "--cube": hex } as React.CSSProperties}
+    >
+      {!inStock && (
+        <span className="absolute left-1/2 top-1/2 h-[140%] w-0.5 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-white" />
+      )}
+    </span>
+  );
+}
+
+/** Mini color cubes for product cards. */
 export function ColorDots({ product }: { product: Product }) {
   if (!product.colors?.length) return null;
   const inStock = product.colors.filter((c) => c.inStock).length;
   return (
-    <div className="flex items-center gap-2">
-      <ul className="flex gap-1.5">
+    <div className="flex items-center gap-2.5">
+      <ul className="flex gap-2">
         {product.colors.map((c) => (
-          <li
-            key={c.name}
-            title={`${c.name}${c.inStock ? "" : " — out of stock"}`}
-            className={`relative size-4 border border-white/40 ${c.inStock ? "" : "opacity-35"}`}
-            style={{ backgroundColor: c.hex }}
-          >
-            {!c.inStock && <span className="absolute left-1/2 top-[-2px] h-5 w-px -translate-x-1/2 rotate-45 bg-white" />}
+          <li key={c.name} title={`${c.name}${c.inStock ? "" : " (out of stock)"}`}>
+            <ColorCube hex={c.hex} inStock={c.inStock} className="size-4" />
             <span className="sr-only">
               {c.name}
               {c.inStock ? "" : " (out of stock)"}
@@ -65,42 +75,8 @@ export function ColorDots({ product }: { product: Product }) {
         ))}
       </ul>
       <span className="text-xs text-mist/70">
-        {inStock} of {product.colors.length} colors in stock
+        {inStock}/{product.colors.length} in stock
       </span>
-    </div>
-  );
-}
-
-/** Full color list for the product page. */
-export function ColorList({ product }: { product: Product }) {
-  if (!product.colors?.length) return null;
-  return (
-    <div>
-      <h2 className="font-pixel text-sm font-bold uppercase tracking-wider text-seal">Colors</h2>
-      <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-        {product.colors.map((c) => (
-          <li
-            key={c.name}
-            className={`flex min-h-11 items-center gap-3 border-2 px-3 py-2 ${
-              c.inStock ? "border-white/15 bg-night-2" : "border-white/5 bg-night-2/40"
-            }`}
-          >
-            <span
-              className={`relative size-6 shrink-0 border border-white/40 ${c.inStock ? "" : "opacity-35"}`}
-              style={{ backgroundColor: c.hex }}
-              aria-hidden="true"
-            >
-              {!c.inStock && <span className="absolute left-1/2 top-[-3px] h-7 w-px -translate-x-1/2 rotate-45 bg-white" />}
-            </span>
-            <span className={`flex-1 font-semibold ${c.inStock ? "" : "text-mist/50"}`}>{c.name}</span>
-            <span
-              className={`shrink-0 whitespace-nowrap font-pixel text-[0.7rem] font-bold uppercase ${c.inStock ? "text-pitch" : "text-seal"}`}
-            >
-              {c.inStock ? "In stock" : "Out of stock"}
-            </span>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

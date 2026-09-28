@@ -23,7 +23,13 @@ export type Condition = "New" | "Used" | "Refurbished";
 
 export type ProductImage = { src: StaticImageData; alt: string };
 
-export type ColorOption = { name: string; hex: string; inStock: boolean };
+export type ColorOption = {
+  name: string;
+  hex: string;
+  inStock: boolean;
+  /** Gallery photo to jump to when this color is picked (one of the product's images). */
+  image?: StaticImageData;
+};
 
 export type Product = {
   slug: string;
@@ -62,10 +68,10 @@ export const PRODUCTS: Product[] = [
     badge: "Top Save",
     featured: true,
     colors: [
-      { name: "Black", hex: "#1a1a1a", inStock: true },
-      { name: "White", hex: "#f2f2f2", inStock: true },
-      { name: "Translucent Red", hex: "#d62a2a", inStock: false },
-      { name: "Translucent Blue", hex: "#2b5fd9", inStock: false },
+      { name: "Black", hex: "#1a1a1a", inStock: true, image: t7BlackFront },
+      { name: "White", hex: "#f2f2f2", inStock: true, image: t7WhiteFront },
+      { name: "Translucent Red", hex: "#d62a2a", inStock: false, image: t7Colors },
+      { name: "Translucent Blue", hex: "#2b5fd9", inStock: false, image: t7Colors },
     ],
     images: [
       { src: t7BlackFront, alt: "GameSir T7 wired controller in black with blue-lit thumbsticks, front view" },
