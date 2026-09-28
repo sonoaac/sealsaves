@@ -1,42 +1,7 @@
 # Chat log — last 10 messages
 
-Updated automatically after every Claude reply (9/27/2026, 9:17:11 PM).
+Updated automatically after every Claude reply (9/27/2026, 9:48:00 PM).
 Your message and Claude's reply each count as one.
-
----
-
-## Claude
-
-The GameSir page now has a Minecraft-style colour picker. I tested the clicks in Edge on the built site; it passes lint and the production build.
-
-**On the product page:**
-- **Colour cubes:** Black, White, Red and Blue each show as a textured block with a 3D edge, and no colour names are written out. Hovering shows the name, and screen readers still announce it.
-- **Clicking a cube changes the title**, e.g. **"GameSir T7 Wired Controller - White"**, and the chosen cube gets a green outline.
-- **The photo switches too:**
-
-| Cube clicked | Title | Photo shown |
-|---|---|---|
-| Black (the default) | GameSir T7 Wired Controller - Black | Black controller |
-| White | GameSir T7 Wired Controller - White | White controller |
-| Red | GameSir T7 Wired Controller - Translucent Red, then **OUT OF STOCK** | Red / blue / white lineup |
-| Blue | GameSir T7 Wired Controller - Translucent Blue, then **OUT OF STOCK** | Same lineup |
-
-- **Out-of-stock colours:** the cube is dimmed with a slash through it.
-- **Gallery:** clicking the thumbnails or arrows still works normally.
-
-**On the homepage card:** the colour squares are now mini cubes, followed by "2/4 in stock".
-
-**Adding colours to other products:** add a `colors` list to the item in [src/lib/products.ts](src/lib/products.ts). Each colour needs a name, a colour code, whether it's in stock, and which photo to show (`image: 0` is the first photo).
-
-**One thing you might want changed:** when an out-of-stock colour is picked, the **Buy on TikTok** button still works. I can grey it out and relabel it "Out of stock" for those colours.
-
-Not saved as a snapshot yet; say the word when you want it saved.
-
----
-
-## You
-
-ok so on the selection of the color example white i want the image to go nav to the white image, i assume sae way you were able tho label the 2F02-white-front
 
 ---
 
@@ -150,3 +115,33 @@ I've made the `users manual` folder with two files, and set up the chat log to u
 **One thing to check:** hooks sometimes don't activate until Claude Code reloads its settings. The log's timestamp should change after this reply. If it doesn't, type `/hooks` once or restart Claude Code; you can also use `/hooks` to review or turn the hook off later.
 
 **Not saved yet:** these files aren't in a snapshot. When we set up the GitHub copy next, I'll add them to the manual and save everything together.
+
+---
+
+## You
+
+ok set up the github copy after add te files to the snapshot
+
+---
+
+## Claude
+
+I saved the files as snapshot **`v5-users-manual`**: the `users manual` folder (snapshot guide and chat log) plus the auto-update hook.
+
+**The GitHub copy needs one step from you.** The official GitHub command-line tool isn't installed here (the `gh` on your computer is an unrelated old npm package), so I can't create the repository myself.
+
+**Create an empty repository:**
+1. Go to **https://github.com/new** while signed in as **sonoaac**.
+2. Repository name: **`sealsaves`**
+3. Choose **Private** (recommended: the code, your photos and the chat log stay visible only to you).
+4. **Don't** tick "Add a README", ".gitignore" or "license". The repository must be empty.
+5. Click **Create repository** and tell me it's done.
+
+**Then I'll handle the rest:**
+- Connect this project to it and upload everything, including all 5 snapshots.
+- Add a "GitHub backup" section to `users manual/snapshots.md`, covering where the copy lives and how to update it.
+- Save that as the next snapshot and upload it too.
+
+If you'd rather use a different repository name, or make it public, tell me when you reply.
+
+One side effect of the auto-updated chat log: `chat-log.md` changes after every reply, so it will always show up as an unsaved change. Each new snapshot will include its latest version.
