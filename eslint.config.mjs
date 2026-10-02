@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Claude Code hooks/skills are Node helper scripts, not site code
+    ".claude/**",
   ]),
 ]);
 

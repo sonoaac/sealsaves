@@ -31,6 +31,7 @@ A copy of the project and every snapshot lives on GitHub:
 | `v4-color-picker` | + colour cubes that switch the title and photo |
 | `v5-users-manual` | + this users manual and the auto-updated chat log |
 | `v6-github-backup` | + this GitHub backup section |
+| `v7-instax-coa` | + Instax mini 13 ($95.99, 5 colours) and the COA crop skill |
 
 **Keeping GitHub up to date:** a new snapshot is saved on your computer first. Ask Claude to "save a snapshot and upload it", or run these in the project folder:
 

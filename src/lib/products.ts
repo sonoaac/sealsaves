@@ -17,6 +17,14 @@ import g305WhiteDiagram from "@/assets/products/logitech-g305/05-white-diagram.j
 import g305Underside from "@/assets/products/logitech-g305/06-underside.webp";
 import g305Sensor from "@/assets/products/logitech-g305/07-hero-sensor.jpg";
 
+import miniPink from "@/assets/products/instax-mini-13/01-pink-angle.jpg";
+import miniPurple from "@/assets/products/instax-mini-13/02-purple-angle.jpg";
+import miniColors from "@/assets/products/instax-mini-13/03-colors.jpg";
+import miniWhite from "@/assets/products/instax-mini-13/04-white-close-up.jpg";
+import miniBlueAlley from "@/assets/products/instax-mini-13/05-blue-bowling-alley.jpg";
+import miniBlueBalls from "@/assets/products/instax-mini-13/06-blue-bowling-balls.jpg";
+import miniAccessories from "@/assets/products/instax-mini-13/07-white-with-accessories.jpg";
+
 export type Category = "gaming" | "tech" | "iphone" | "ipad" | "everyday";
 
 export type Condition = "New" | "Used" | "Refurbished";
@@ -187,6 +195,37 @@ export const PRODUCTS: Product[] = [
     compareAt: 999.0,
     badge: "Deal",
     featured: true,
+  },
+  {
+    slug: "instax-mini-13",
+    name: "Instax mini 13",
+    blurb: "Point, shoot, print. Credit-card-sized instant photos in seconds.",
+    category: "tech",
+    price: 95.99,
+    badge: "New",
+    colors: [
+      { name: "Pink", hex: "#e9c3d3", inStock: true, image: miniPink },
+      { name: "Purple", hex: "#c8c2e8", inStock: true, image: miniPurple },
+      { name: "White", hex: "#e8e9ee", inStock: true, image: miniWhite },
+      { name: "Blue", hex: "#a7c3e2", inStock: true, image: miniBlueAlley },
+      { name: "Green", hex: "#a6dcc3", inStock: true, image: miniColors },
+    ],
+    images: [
+      { src: miniPink, alt: "Instax mini 13 instant camera in pink with matching wrist strap, angled view" },
+      { src: miniPurple, alt: "Instax mini 13 in purple, angled view" },
+      { src: miniColors, alt: "Instax mini 13 in white, pink, blue, purple and green" },
+      { src: miniWhite, alt: "Instax mini 13 in white: twist the lens once to turn on, again for close-up mode" },
+      { src: miniBlueAlley, alt: "Blue Instax mini 13 on a bowling alley floor surrounded by instant photos and pins" },
+      { src: miniBlueBalls, alt: "Blue Instax mini 13 resting between bowling balls" },
+      { src: miniAccessories, alt: "White Instax mini 13 shown with a case, photo frames, clips, string and a film pack (accessories not included)" },
+    ],
+    highlights: [
+      "Twist the lens to turn it on, twist again for close-up shots",
+      "Instax 60mm lens, focus range 0.3m to infinity",
+      "Built-in flash and self-timer",
+      "Prints credit-card-sized photos on Instax mini film (sold separately)",
+      "Camera only. Case, frames, clips and film shown in photos are not included",
+    ],
   },
   {
     slug: "usb-c-hub",
